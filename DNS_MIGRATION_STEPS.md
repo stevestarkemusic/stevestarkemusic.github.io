@@ -101,3 +101,39 @@ The site should:
 - Load without 404 errors
 - Show GitHub Pages in the server response
 - Both `stevestarkemusic.com` and `www.stevestarkemusic.com` should work
+
+---
+
+## Step 5: Enable HTTPS
+
+After DNS has fully propagated and GitHub Pages can verify your domain ownership, you can enable HTTPS.
+
+**How to enable HTTPS:**
+
+1. Go to your GitHub repository: `https://github.com/stevestarkemusic/stevestarkemusic.github.io`
+2. Click on **Settings** (in the repository menu)
+3. Click on **Pages** (in the left sidebar)
+4. Under "Custom domain", you should see `stevestarkemusic.com` verified
+5. Check the box that says **"Enforce HTTPS"**
+
+**Important notes:**
+
+- You **cannot** enable "Enforce HTTPS" until DNS is pointing to GitHub Pages and verified
+- If the option is grayed out, wait a bit longer for DNS propagation (can take a few hours)
+- GitHub will automatically provision a free SSL certificate from Let's Encrypt
+- Certificate provisioning can take a few minutes to a few hours
+- Once enabled, GitHub automatically redirects HTTP to HTTPS
+- The certificate renews automatically - no maintenance required
+
+**Verify HTTPS is working:**
+
+```bash
+# Check that HTTPS works
+curl -I https://stevestarkemusic.com
+
+# Should see:
+# - HTTP/2 200 (or 301/302 redirect)
+# - server: GitHub.com (or similar GitHub Pages server header)
+```
+
+Visit your site in a browser and check for the padlock icon in the address bar.
